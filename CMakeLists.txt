@@ -6,21 +6,16 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Ищем Qt5, компонент Quick нужен
-find_package(Qt5 REQUIRED COMPONENTS Quick)
-
-# Генерируем moc/uic/rcc (Qt5)
-qt5_wrap_cpp(MOC_FILES main.cpp)
-qt5_add_resources(RCC_FILES resources.qrc)
+find_package(Qt5 REQUIRED COMPONENTS Quick Core Gui Qml)
 
 # Создаём исполняемый файл
 add_executable(hepoll-app
     main.cpp
-    ${MOC_FILES}
-    ${RCC_FILES}
+    resources.qrc   # RCC будет обработан автоматически
 )
 
-# Линкуем с Qt5::Quick
-target_link_libraries(hepoll-app PRIVATE Qt5::Quick)
+# Линкуем с Qt5
+target_link_libraries(hepoll-app PRIVATE Qt5::Quick Qt5::Core Qt5::Gui Qt5::Qml)
 
 # Установка бинарника
 install(TARGETS hepoll-app DESTINATION bin)
