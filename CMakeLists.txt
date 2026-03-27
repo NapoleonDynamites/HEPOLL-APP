@@ -5,14 +5,13 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt5 REQUIRED COMPONENTS Quick)
 
 qt_add_executable(hepoll-app
     main.cpp
     resources.qrc
 )
 
-target_link_libraries(hepoll-app PRIVATE Qt6::Quick)
+target_link_libraries(hepoll-app PRIVATE Qt5::Quick)
 
-# 👇 ВАЖНО: добавляем установку
 install(TARGETS hepoll-app DESTINATION bin)
